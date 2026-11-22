@@ -18,7 +18,11 @@ What I learned, in plain words. Newest first. Re-read before interviews.
 **The story my queries told**
 - An IP visited OWL Records' "security questions" page with the answers in the URL
   (mother's maiden name = Washington, first pet = Fluffy)
-- (Explain in my own words: what was the attacker doing, and why are security questions weak?)
+- My words: "They're trying to reset the password." Answers likely found "on social media or Google."
+- The attack: OSINT (public info) -> answer security questions -> password reset -> account takeover -> extortion
+- Why security questions are weak: answers are life facts, often public, and you can't change them after a leak
+- Fix: MFA (authenticator app), or random fake answers stored in a password manager
+- Ties to AuthN: security questions are a weak way to prove who you are
 
 Queries collected in `03 - Hunt with KQL/raw-queries.kql`. Next: explain my 3 best line by line.
 
