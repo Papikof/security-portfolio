@@ -17,3 +17,17 @@ InboundNetworkEvents          // traffic coming into the company from outside
 | where src_ip has "18.66.52.227"
                               // my words: "searching for a guest IP address, someone from outside" (the suspect)
 | project url                 // show only the URL column: which pages they visited
+
+// ---------------------------------------------------------------------------
+// Query #3: Find the moment the suspect typed the security-question answers (the break-in)
+// "Washington" and "Fluffy" are the answers to the security questions
+// (mother's maiden name, first pet). Searching for them finds the account-takeover moment.
+// Result: 2024-04-10 13:02, GET /account/security-questions?...Washington...Fluffy, status 200
+InboundNetworkEvents
+| where timestamp between (datetime("2024-04-10T00:00:00") .. datetime("2024-04-11T00:00:00"))
+| where url has_any("washington", "fluffy")
+                              // my words: "it keeps Washington and Fluffy, the rest is irrelevant"
+                              // has_any = keep the row if the URL has EITHER word (one is enough)
+| where src_ip has "18.66.52.227"
+
+// Note: Query #2 = Query #1 without "| project url", so it shows ALL columns instead of just the URL.
