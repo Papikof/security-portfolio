@@ -1,0 +1,20 @@
+// Raw queries collected during the KC7 "A Rap Beef" case (2026-11-21), in order.
+// Later: pick the 3 best, explain each line in my own words, move them to kql-notes.kql.
+
+// #1
+InboundNetworkEvents
+| where timestamp between (datetime("2024-04-10T00:00:00") .. datetime("2024-04-11T00:00:00"))
+| where src_ip has "18.66.52.227"
+| project url
+
+// #2
+InboundNetworkEvents
+| where timestamp between (datetime("2024-04-10T00:00:00") .. datetime("2024-04-11T00:00:00"))
+| where src_ip has "18.66.52.227"
+
+// #3
+InboundNetworkEvents
+| where timestamp between (datetime("2024-04-10T00:00:00") .. datetime("2024-04-11T00:00:00"))
+| where url has_any("washington", "fluffy")
+| where src_ip has "18.66.52.227"
+

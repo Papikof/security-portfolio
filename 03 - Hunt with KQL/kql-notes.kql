@@ -1,0 +1,7 @@
+// Mission 3: Hunt with KQL (KC7 Cyber)
+// Paste every query that WORKS below. Put a one-line comment above each, starting with //
+// Example:
+// Peek at the Employees table to see its columns
+Employees
+| take 10
+
