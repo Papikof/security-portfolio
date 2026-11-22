@@ -24,7 +24,15 @@ What I learned, in plain words. Newest first. Re-read before interviews.
 - Fix: MFA (authenticator app), or random fake answers stored in a password manager
 - Ties to AuthN: security questions are a weak way to prove who you are
 
-Queries collected in `03 - Hunt with KQL/raw-queries.kql`. Next: explain my 3 best line by line.
+**where vs project (the hard one, finally got it)**
+- Sticky notes: each row = one event (one note), each column = a detail (a line on the note)
+- `where` = throw away notes I don't want -> fewer EVENTS ("I'm ONLY looking for boss@evil.com")
+- `project` = keep every note, cover up lines -> fewer DETAILS ("I only want to see details")
+- Inbound = traffic coming INTO the company (front-door camera). Outbound = going OUT.
+- src_ip = where traffic came FROM. 10.x addresses = internal/private.
+- Watch out: each table has its own columns (peek with take 10 first). sender = from, recipient = to.
+
+All 3 queries explained line by line in `03 - Hunt with KQL/kql-notes.kql`.
 
 ---
 
