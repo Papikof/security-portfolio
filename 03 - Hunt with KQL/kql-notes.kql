@@ -1,7 +1,19 @@
-// Mission 3: Hunt with KQL (KC7 Cyber)
-// Paste every query that WORKS below. Put a one-line comment above each, starting with //
-// Example:
-// Peek at the Employees table to see its columns
-Employees
-| take 10
+// Mission 3: Hunt with KQL (KC7 Cyber, "A Rap Beef")
+// My best queries, explained line by line in my own words.
+//
+// Cheat sheet (sticky notes: each row = one event, each column = a detail):
+//   where   = throw away notes I don't want   -> fewer EVENTS (rows)
+//   project = cover up lines on every note   -> fewer DETAILS (columns)
+//   Inbound = traffic coming INTO the company from outside (front-door camera)
+//   src_ip  = source IP, where the traffic came FROM
 
+// ---------------------------------------------------------------------------
+// Query #1: What web pages did the suspect's IP visit on April 10, 2024?
+// "This query shows the web pages (URLs) that the suspect's IP visited
+//  on OWL Records' site on April 10, 2024."
+InboundNetworkEvents          // traffic coming into the company from outside
+| where timestamp between (datetime("2024-04-10T00:00:00") .. datetime("2024-04-11T00:00:00"))
+                              // my words: "filters the time and date, a specific timeframe" (one day)
+| where src_ip has "18.66.52.227"
+                              // my words: "searching for a guest IP address, someone from outside" (the suspect)
+| project url                 // show only the URL column: which pages they visited
