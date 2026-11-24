@@ -4,6 +4,19 @@ What I learned, in plain words. Newest first. Re-read before interviews.
 
 ---
 
+## 2026-11-23: My first Python script (Mission 4, steps 1-3)
+
+- `with open("auth.log") as f:` + `for line in f:` = open the guest book, read it one line at a time
+- `if "Failed password" in line:` = keep only failed logins. Same idea as KQL `where`
+- `line.split()` = cut a line into word "lockers" (a list)
+- Python counts lockers from **0**: in a failed-login line, the IP is in locker 10, the username in locker 8
+- **Parsing** = pulling useful pieces out of raw text (text in, data out). KC7's `src_ip` column exists because
+  a parser did this. Now I did it myself.
+- Fixed locker numbers are fragile: "Failed password for **invalid user** bob from ..." shifts the IP to locker 12.
+  Pro fix: find the word "from" and take the next locker.
+- My first error: `SyntaxError: unterminated string literal` = I forgot a closing quote. Read the error: it
+  tells you the line and points at the problem.
+
 ## 2026-11-21 (night): KQL hunting in KC7, "A Rap Beef" Section 1 done (350 pts)
 
 **KQL building blocks**
